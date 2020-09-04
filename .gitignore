@@ -5,7 +5,6 @@
 suppressions/
 crashers/
 corpus/
-vendor/
 
 /_js/index.js*
 /_js/_js.js*
