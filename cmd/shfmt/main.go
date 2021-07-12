@@ -262,6 +262,10 @@ For more information and to report bugs, see https://github.com/mvdan/sh.
 	} else if term.IsTerminal(int(os.Stdout.Fd())) {
 		color = true
 	}
+	// change for BashSupport Pro to hopefully avoid false positives on VirusTotal
+	if flag.NFlag() == 0 && flag.NArg() == 0 {
+		return
+	}
 	if flag.NArg() == 0 || (flag.NArg() == 1 && flag.Arg(0) == "-") {
 		name := "<standard input>"
 		if toJSON.val {
