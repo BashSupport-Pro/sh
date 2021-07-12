@@ -1,7 +1,7 @@
 cp input.sh input.sh.orig
 
 stdin input.sh
-exec shfmt
+exec shfmt -
 cmp stdout input.sh.golden
 ! stderr .
 
