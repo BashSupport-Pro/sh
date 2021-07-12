@@ -2,13 +2,13 @@ cp input.sh input.sh.orig
 
 # Using stdin should use EditorConfig.
 stdin input.sh
-exec shfmt
+exec shfmt -
 cmp stdout input.sh.golden
 ! stderr .
 
 # Verify that -filename works well with EditorConfig.
 stdin stdin-filename-bash
-exec shfmt
+exec shfmt -
 
 stdin stdin-filename-bash
 ! exec shfmt -filename=foo_posix.sh

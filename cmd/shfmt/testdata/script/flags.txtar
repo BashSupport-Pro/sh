@@ -37,7 +37,7 @@ stderr '-filename can only be used with stdin'
 # Check all the -ln variations.
 
 stdin input-posix
-! exec shfmt
+! exec shfmt -
 
 stdin input-posix
 exec shfmt -ln=posix
@@ -58,11 +58,11 @@ exec shfmt -ln=mksh
 stdout 'coprocess'
 
 stdin input-mksh
-! exec shfmt
+! exec shfmt -
 
 # Ensure that the default "bash" language works with and without flags.
 stdin input-bash
-exec shfmt
+exec shfmt -
 stdout loop
 
 # Ensure that -ln=auto works on stdin via filename.
@@ -72,12 +72,12 @@ stdout 'coprocess'
 
 # Ensure that -ln=auto works on stdin via shebang.
 stdin input-mksh-shebang
-exec shfmt
+exec shfmt -
 stdout 'coprocess'
 
 # Ensure that -ln=auto works on stdin using the fallback.
 stdin input-bash
-exec shfmt
+exec shfmt -
 stdout 'loop'
 
 # The default -ln=auto shouldn't require an extension or shebang,
