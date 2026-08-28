@@ -156,6 +156,14 @@ For more information and to report bugs, see https://github.com/mvdan/sh.
 	flag.Parse()
 
 	if versionFlag.val {
+		// change for BashSupport Pro: the bundled binaries are built from a bind mount without a git
+		// repository, where the version of the build info is "(devel)". "-X main.version" names the
+		// release the sources are rebased onto, upstream dropped the flag in 3.13.
+		if version != "" {
+			fmt.Println(version)
+			return
+		}
+
 		version := "(unknown)"
 		if info, ok := debug.ReadBuildInfo(); ok {
 			mod := &info.Main
@@ -353,6 +361,10 @@ For more information and to report bugs, see https://github.com/mvdan/sh.
 	}
 	os.Exit(status)
 }
+
+// change for BashSupport Pro: set with "-X main.version" by tools/build-shfmt.sh of the plugin,
+// empty in a build without the flag, which then reports the version of the build info as upstream does.
+var version string
 
 var vcsDir = regexp.MustCompile(`^\.(git|svn|hg)$`)
 
